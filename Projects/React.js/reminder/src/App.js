@@ -6,8 +6,13 @@ export default function App() {
     const [error, userError] = useState("")
     const [reminder, reminderName] = useState(null)
     const [btn, buttonDisabled] = useState(false)
+    const [initialReminder, setReminder] = useState(true)
 
     const startReminder = () => {
+        if (initialReminder === false) {
+            userError("Please wait...")
+            return
+        }
         let lastTime = time
         if (name === "") {
             userError("Please complete with the reminder name.")
@@ -32,6 +37,7 @@ export default function App() {
                 reminderName("Finished!")
                 clearInterval(refreshIntervalId)
             }
+            setReminder(false)
         }
         reminderFunction()
         const refreshIntervalId = setInterval(() => {
@@ -42,6 +48,7 @@ export default function App() {
         buttonDisabled(false)
         reminderName("")
         userError("You can set a new reminder right now 😉")
+        setReminder(true)
     }
     return (
         <div>
@@ -55,7 +62,7 @@ export default function App() {
                 <button className="submit-button" type="button" onClick={() => startReminder()} disabled={btn}>Start Reminder</button>
                 <button className="submit-button" type="button" onClick={() => enableButton()}>Clear all!</button>
                 <div className="div-reminder">
-                    <p className="reminder">{reminder}</p>
+                    <p className="reminder-info">{reminder}</p>
                 </div>
             </div>
         </div>
