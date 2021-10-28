@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancing projects</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: #dddddd;  
+        }
+    </style>
+    <script>
+        const api_url = "http://localhost:3000/api/projects";
+        async function getapi(url) {
+            const response = await fetch(url);
+            var data = await response.json();
+            show(data);
+        }
+        getapi(api_url);
+        function show(data) {
+            let tab =
+                `<tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Link</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                </tr>`;
+            for (let r of data) {
+                tab += `
+                <tr> 
+                    <td>${r.id} </td>
+                    <td>${r.name}</td>
+                    <td><a href="${r.link}" target="_blank">${r.link}</a></td> 
+                    <td><img src="imgs/${r.img}" alt="imgs/${r.img}" /></td> 
+                    <td>${r.description}</td>         
+                </tr>`;
+            }
+            document.getElementById("projects").innerHTML = tab;
+        }
+    </script>
+</head>
+<body>
+    <h1>Projects I've worked on</h1>
+    <table id="projects"></table>
+</body>
+</html>

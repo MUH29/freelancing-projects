@@ -1,0 +1,41 @@
+{
+  "name": "freelancing-projects",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "nodemonConfig": {
+    "ext": "js, html, json",
+    "ignore": [
+      "*.json"
+    ],
+    "delay": "2"
+  },
+  "scripts": {
+    "build": "netlify-lambda build express",
+    "start": "nodemon server-local.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lazarnarcis/freelancing-projects.git"
+  },
+  "keywords": [
+    "netlify",
+    "express.js"
+  ],
+  "author": "neverendingqs",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/lazarnarcis/freelancing-projects/issues"
+  },
+  "homepage": "https://github.com/lazarnarcis/freelancing-projects#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "json-server": "^0.17.0",
+    "mysql": "^2.18.1",
+    "netlify-lambda": "^1.6.3",
+    "nodemon": "^1.19.2",
+    "serverless-http": "^2.3.0"
+  }
+}
